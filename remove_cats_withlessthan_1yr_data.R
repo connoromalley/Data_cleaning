@@ -1,14 +1,13 @@
 library(magrittr)
 library(dplyr)
 
+# read in csv of animal movement data 
 out.df <- read.csv('full_used_points.csv', row.names = FALSE)
 
 # converting data to standard format
-
 out.df <- out.df %>%  mutate(date_visit = as.Date(date, "%m/%d/%Y"))
 
 # calculating length of each cat's data time span
-
 out.df <- out.df %>% 
   group_by(catid) %>%
   mutate(first_visit = min(date_visit), 
